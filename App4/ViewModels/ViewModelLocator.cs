@@ -26,8 +26,9 @@ namespace App4.ViewModels
 	public class ViewModelLocator
 	{
 		public const string StartPageKey = "StartPage";
-		public const string SecondPageKey = "SecondPage";
-		public const string ThirdPageKey = "ThirdPage";
+		public const string StartPageContentKey = "StartPageContent";
+		public const string AddPageKey = "AddPage";
+		public const string ViewPageKey = "ViewPage";
 
 		/// <summary>
 		/// Initializes a new instance of the ViewModelLocator class.
@@ -49,9 +50,11 @@ namespace App4.ViewModels
 			}
 
 			var navig = new FrameNavigationService(Window.Current.Content as Frame);
+
 			navig.Configure(StartPageKey, typeof(StartPage));
-			navig.Configure(SecondPageKey, typeof(SecondPage));
-			navig.Configure(ThirdPageKey, typeof(ThirdPage));
+			navig.Configure(StartPageContentKey, typeof(StartPageContent));
+			navig.Configure(AddPageKey, typeof(AddPage));
+			navig.Configure(ViewPageKey, typeof(ViewPage));
 
 			//Register your services used here
 			SimpleIoc.Default.Register<INavigationService>(() => navig);
@@ -69,7 +72,8 @@ namespace App4.ViewModels
 		// The StartPage view model.
 		// </value>
 		public StartPageViewModel StartPageInstance => ServiceLocator.Current.GetInstance<StartPageViewModel>();
-		public AddPageViewModel SecondPageInstance => ServiceLocator.Current.GetInstance<AddPageViewModel>();
+		public AddPageViewModel AddPageInstance => ServiceLocator.Current.GetInstance<AddPageViewModel>();
+		public ViewPageViewModel ViewPageInstance => ServiceLocator.Current.GetInstance<ViewPageViewModel>();
 
 		public Employee Model1Instance => ServiceLocator.Current.GetInstance<Employee>();
 		// <summary>

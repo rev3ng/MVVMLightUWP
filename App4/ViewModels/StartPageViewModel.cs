@@ -45,13 +45,17 @@ namespace App4.ViewModels
 
 		public void NavigateCommandAction(object sender, TappedRoutedEventArgs e)
 		{
-			if ((sender as NavigationViewItem).Tag.Equals("Sample Page2"))
+			if ((sender as NavigationViewItem).Tag.Equals("Add Page"))
 			{
-				_navigationService.NavigateTo("SecondPage");
+				_navigationService.NavigateTo("AddPage");
 			}
-			else if ((sender as NavigationViewItem).Tag.Equals("Sample Page3"))
+			else if ((sender as NavigationViewItem).Tag.Equals("View Page"))
 			{
-				_navigationService.NavigateTo("ThirdPage");
+				_navigationService.NavigateTo("ViewPage");
+			}
+			else if ((sender as NavigationViewItem).Tag.Equals("Main Page"))
+			{
+				_navigationService.NavigateTo("StartPageContent");
 			}
 		}
 

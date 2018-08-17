@@ -16,16 +16,12 @@
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<NavigationView Margin="0,12,0,0" IsPaneOpen="False">
 			<NavigationView.MenuItems>
-				<NavigationViewItem Icon="Play" Content="Start Page" Tag="Main Page" />
+				<NavigationViewItem Icon="Play" Content="Start Page" Tag="Main Page" Tapped="{x:Bind Vm.NavigateCommandAction}" />
 				<NavigationViewItemSeparator/>
 				<NavigationViewItem Icon="Save" Content="Add items" Tag="Add Page" Tapped="{x:Bind Vm.NavigateCommandAction}"/>
-				<NavigationViewItem Icon="Refresh" Content="List items" Tag="" Tapped="{x:Bind Vm.NavigateCommandAction}"/>
+				<NavigationViewItem Icon="Refresh" Content="List items" Tag="View Page" Tapped="{x:Bind Vm.NavigateCommandAction}"/>
 			</NavigationView.MenuItems>
 			<Frame x:Name="ContentFrame" Margin="24">
-				<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-					<TextBlock FontSize="100" HorizontalAlignment="Center"> Hello!</TextBlock>
-					<TextBlock FontSize="50">To start, click menu button.</TextBlock>
-				</StackPanel>
 			</Frame>
 		</NavigationView>
 	</Grid>

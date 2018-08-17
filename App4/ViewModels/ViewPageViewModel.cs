@@ -17,7 +17,6 @@ namespace App4.ViewModels
 	public class ViewPageViewModel : ViewModelBase
 	{
 		private bool _isLoading;
-		private INavigationService _navigationService;
 		public bool IsLoading
 		{
 			get => _isLoading;
@@ -43,15 +42,9 @@ namespace App4.ViewModels
 			}
 		}
 
-		public void NavigateCommandAction(object sender, RoutedEventArgs e)
+		public ViewPageViewModel()
 		{
-			_navigationService.NavigateTo("SecondPage");
-		}
-
-		public ViewPageViewModel(INavigationService navigationService, IEmployeesActions employeesActions)
-		{
-			Title = "Third PAGE";
-			_navigationService = navigationService;
+			Title = "View PAGE";
 		}
 	}
 

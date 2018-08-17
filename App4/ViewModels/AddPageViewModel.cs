@@ -31,27 +31,8 @@ namespace App4.ViewModels
 			}
 		}
 
-		public RelayCommand NavigateCommand { get; private set; }
-
-		private readonly INavigationService _navigationService;
-
-		private ObservableCollection<Employee> models;
-
-		public ObservableCollection<Employee> Models
+		public AddPageViewModel()
 		{
-			get => models;
-		}
-
-		private void NavigateCommandAction()
-		{
-			_navigationService.NavigateTo("StartPage");
-		}
-
-		public AddPageViewModel(INavigationService navigationService, IEmployeesActions employeesActions)
-		{
-			models = employeesActions.GetAllEmployees();
-			_navigationService = navigationService;
-			NavigateCommand = new RelayCommand(NavigateCommandAction);
 			Title = "Second Page";
 		}
 
