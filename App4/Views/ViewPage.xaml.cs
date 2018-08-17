@@ -23,7 +23,7 @@ namespace App4.Views
     /// </summary>
     public sealed partial class ThirdPage : Page
     {
-	    public ThirdPageViewModel Vm => (ThirdPageViewModel)DataContext;
+	    public ViewPageViewModel Vm => (ViewPageViewModel)DataContext;
 		public ThirdPage()
         {
             this.InitializeComponent();

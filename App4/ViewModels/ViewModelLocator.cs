@@ -56,8 +56,8 @@ namespace App4.ViewModels
 			//Register your services used here
 			SimpleIoc.Default.Register<INavigationService>(() => navig);
 			SimpleIoc.Default.Register<StartPageViewModel>();
-			SimpleIoc.Default.Register<SecondPageViewModel>();
-			SimpleIoc.Default.Register<ThirdPageViewModel>();
+			SimpleIoc.Default.Register<AddPageViewModel>();
+			SimpleIoc.Default.Register<ViewPageViewModel>();
 
 		}
 
@@ -69,7 +69,7 @@ namespace App4.ViewModels
 		// The StartPage view model.
 		// </value>
 		public StartPageViewModel StartPageInstance => ServiceLocator.Current.GetInstance<StartPageViewModel>();
-		public SecondPageViewModel SecondPageInstance => ServiceLocator.Current.GetInstance<SecondPageViewModel>();
+		public AddPageViewModel SecondPageInstance => ServiceLocator.Current.GetInstance<AddPageViewModel>();
 
 		public Employee Model1Instance => ServiceLocator.Current.GetInstance<Employee>();
 		// <summary>

@@ -14,15 +14,18 @@
 
 	
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<NavigationView Margin="0,12,0,0" Header="This is header text." IsPaneOpen="False">
+		<NavigationView Margin="0,12,0,0" IsPaneOpen="False">
 			<NavigationView.MenuItems>
-				<NavigationViewItem Icon="Play" Content="Second Page" Tag="Sample Page2" Tapped="{x:Bind Vm.NavigateCommandAction}"/>
+				<NavigationViewItem Icon="Play" Content="Start Page" Tag="Main Page" />
 				<NavigationViewItemSeparator/>
-				<NavigationViewItem Icon="Save" Content="Third Page" Tag="Sample Page3" Tapped="{x:Bind Vm.NavigateCommandAction}"/>
-				<NavigationViewItem Icon="Refresh" Content="Item3" Tag="Sample Pagex"/>
+				<NavigationViewItem Icon="Save" Content="Add items" Tag="Add Page" Tapped="{x:Bind Vm.NavigateCommandAction}"/>
+				<NavigationViewItem Icon="Refresh" Content="List items" Tag="" Tapped="{x:Bind Vm.NavigateCommandAction}"/>
 			</NavigationView.MenuItems>
 			<Frame x:Name="ContentFrame" Margin="24">
-				<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="100"> Hello World!</TextBlock>
+				<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+					<TextBlock FontSize="100" HorizontalAlignment="Center"> Hello!</TextBlock>
+					<TextBlock FontSize="50">To start, click menu button.</TextBlock>
+				</StackPanel>
 			</Frame>
 		</NavigationView>
 	</Grid>

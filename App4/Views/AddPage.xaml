@@ -17,7 +17,7 @@
 		
 		<StackPanel Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
 			<TextBlock Width="100" Text="Dupa" HorizontalAlignment="Center" VerticalAlignment="Center" Padding="10" TextAlignment="Center"/>
-			<Button HorizontalAlignment="Center" Width="100" Command="{Binding NavigateCommand}">GO First page!</Button>
+			<Button HorizontalAlignment="Center" Width="150" Command="{Binding NavigateCommand}">GO First page!</Button>
 		</StackPanel>
 		
 		<ListView Grid.Column="1" ItemsSource="{Binding Models}"/>

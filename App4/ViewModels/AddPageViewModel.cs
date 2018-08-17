@@ -11,7 +11,7 @@ using GalaSoft.MvvmLight.Views;
 
 namespace App4.ViewModels
 {
-	public class SecondPageViewModel : ViewModelBase
+	public class AddPageViewModel : ViewModelBase
 	{
 		private string _title;
 		public string Title
@@ -47,7 +47,7 @@ namespace App4.ViewModels
 			_navigationService.NavigateTo("StartPage");
 		}
 
-		public SecondPageViewModel(INavigationService navigationService, IEmployeesActions employeesActions)
+		public AddPageViewModel(INavigationService navigationService, IEmployeesActions employeesActions)
 		{
 			models = employeesActions.GetAllEmployees();
 			_navigationService = navigationService;

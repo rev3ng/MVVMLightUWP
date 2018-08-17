@@ -14,7 +14,7 @@ using Microsoft.Toolkit.Uwp.UI.Extensions;
 
 namespace App4.ViewModels
 {
-	public class ThirdPageViewModel : ViewModelBase
+	public class ViewPageViewModel : ViewModelBase
 	{
 		private bool _isLoading;
 		private INavigationService _navigationService;
@@ -48,7 +48,7 @@ namespace App4.ViewModels
 			_navigationService.NavigateTo("SecondPage");
 		}
 
-		public ThirdPageViewModel(INavigationService navigationService, IEmployeesActions employeesActions)
+		public ViewPageViewModel(INavigationService navigationService, IEmployeesActions employeesActions)
 		{
 			Title = "Third PAGE";
 			_navigationService = navigationService;
