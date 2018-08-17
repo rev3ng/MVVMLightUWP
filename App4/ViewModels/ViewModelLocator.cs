@@ -75,7 +75,7 @@ namespace App4.ViewModels
 		public AddPageViewModel AddPageInstance => ServiceLocator.Current.GetInstance<AddPageViewModel>();
 		public ViewPageViewModel ViewPageInstance => ServiceLocator.Current.GetInstance<ViewPageViewModel>();
 
-		public Employee Model1Instance => ServiceLocator.Current.GetInstance<Employee>();
+		public Employee EmployeeInstance => ServiceLocator.Current.GetInstance<Employee>();
 		// <summary>
 		// The cleanup.
 		// </summary>

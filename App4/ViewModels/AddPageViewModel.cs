@@ -14,6 +14,7 @@ namespace App4.ViewModels
 	public class AddPageViewModel : ViewModelBase
 	{
 		private string _title;
+		private IEmployeesActions _repo;
 		public string Title
 		{
 
@@ -31,8 +32,17 @@ namespace App4.ViewModels
 			}
 		}
 
-		public AddPageViewModel()
+		public RelayCommand AddClickButtonCommand { get; private set; }
+
+		private void AddDataToDatabase()
 		{
+
+		}
+
+		public AddPageViewModel(IEmployeesActions repo)
+		{
+			this.AddClickButtonCommand = new RelayCommand(AddDataToDatabase);
+			_repo = repo;
 			Title = "Second Page";
 		}
 

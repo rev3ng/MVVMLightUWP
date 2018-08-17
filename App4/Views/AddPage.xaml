@@ -34,9 +34,10 @@
 			<TextBlock/>
 		</StackPanel>
 		
-		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1"/>
-		
-		<Button Grid.Row="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50"> SAD</Button>
+		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0"/>
+
+		<Button Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" 
+		        Command="{Binding AddClickButtonCommand}" Content="Add person to database"/>
 
 	</Grid>
 </Page>
