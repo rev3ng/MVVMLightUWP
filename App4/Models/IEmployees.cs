@@ -18,5 +18,6 @@ namespace App4.Models
 		string Name { get; set; }
 		decimal Salary { get; set; }
 		bool IsHired { get; set; }
+		string Surname { get; set; }
 	}
 }

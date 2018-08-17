@@ -8,6 +8,7 @@ namespace App4.Models
 		private string _name;
 		private decimal _salary;
 		private bool _isHired;
+		private string _surname;
 
 		public int Id
 		{
@@ -19,6 +20,12 @@ namespace App4.Models
 		{
 			get => _name;
 			set { Set(() => Name, ref _name, value); }
+		}
+
+		public string Surname
+		{
+			get => _surname;
+			set { Set(() => Surname, ref _surname, value); }
 		}
 
 		public decimal Salary
