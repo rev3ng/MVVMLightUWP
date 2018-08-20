@@ -61,6 +61,7 @@ namespace App4.ViewModels
 			SimpleIoc.Default.Register<StartPageViewModel>();
 			SimpleIoc.Default.Register<AddPageViewModel>();
 			SimpleIoc.Default.Register<ViewPageViewModel>();
+			SimpleIoc.Default.Register<IEmployee ,Employee>();
 
 		}
 
@@ -75,7 +76,6 @@ namespace App4.ViewModels
 		public AddPageViewModel AddPageInstance => ServiceLocator.Current.GetInstance<AddPageViewModel>();
 		public ViewPageViewModel ViewPageInstance => ServiceLocator.Current.GetInstance<ViewPageViewModel>();
 
-		public Employee EmployeeInstance => ServiceLocator.Current.GetInstance<Employee>();
 		// <summary>
 		// The cleanup.
 		// </summary>

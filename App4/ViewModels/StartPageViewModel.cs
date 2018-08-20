@@ -47,15 +47,15 @@ namespace App4.ViewModels
 		{
 			if ((sender as NavigationViewItem).Tag.Equals("Add Page"))
 			{
-				_navigationService.NavigateTo("AddPage");
+				_navigationService.NavigateTo(nameof(AddPage));
 			}
 			else if ((sender as NavigationViewItem).Tag.Equals("View Page"))
 			{
-				_navigationService.NavigateTo("ViewPage");
+				_navigationService.NavigateTo(nameof(ViewPage));
 			}
 			else if ((sender as NavigationViewItem).Tag.Equals("Main Page"))
 			{
-				_navigationService.NavigateTo("StartPageContent");
+				_navigationService.NavigateTo(nameof(StartPageContent));
 			}
 		}
 
@@ -63,6 +63,7 @@ namespace App4.ViewModels
 		{
 			Title = "Start PAGE";
 			_navigationService = navigationService;
+			//_navigationService.NavigateTo(nameof(StartPageContent));
 		}
 	}
 

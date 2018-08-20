@@ -3,11 +3,16 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:App4.Views"
+	xmlns:conv="using:App4.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
 	DataContext="{Binding AddPageInstance, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	
+	<Page.Resources>
+		<conv:SalaryConverter x:Key="SalaryConverter"/>
+	</Page.Resources>
 
 	<Grid>
 		<Grid.ColumnDefinitions>
@@ -19,25 +24,25 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
-		<StackPanel Padding="20" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+		<StackPanel Padding="20" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
 			<TextBlock Text="Name"/>
-			<TextBox/>
+			<TextBox Text="{x:Bind Vm.Name, Mode=TwoWay}" PlaceholderText="Type Name here"/>
 			<TextBlock/>
 			<TextBlock Text="Salary"/>
-			<TextBox/>
+			<TextBox Text="{x:Bind Vm.Salary, Mode=TwoWay, Converter={StaticResource SalaryConverter}}" PlaceholderText="Type Salary here"/>
 			<TextBlock/>
 			<TextBlock Text="Title"/>
-			<TextBox/>
+			<TextBox Text="{x:Bind Vm.Title, Mode=TwoWay}" PlaceholderText="Type Title here"/>
 			<TextBlock/>
-			<TextBlock Text="Title"/>
-			<TextBox/>
+			<TextBlock Text="Surname"/>
+			<TextBox Text="{x:Bind Vm.Surname, Mode=TwoWay}" PlaceholderText="Type Surname here"/>
 			<TextBlock/>
 		</StackPanel>
 		
 		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0"/>
 
 		<Button Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" 
-		        Command="{Binding AddClickButtonCommand}" Content="Add person to database"/>
+		        Click="{x:Bind Vm.AddDataToDatabase}" Content="Add person to database"/>
 
 	</Grid>
 </Page>
