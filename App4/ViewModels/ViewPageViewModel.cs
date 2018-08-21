@@ -9,7 +9,6 @@ using App4.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using Microsoft.Toolkit.Uwp.UI.Extensions;
 
 
 namespace App4.ViewModels

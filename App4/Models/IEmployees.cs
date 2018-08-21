@@ -1,5 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using Microsoft.Toolkit.Uwp.UI.Extensions;
+﻿using System;
+using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight;
 
 namespace App4.Models
 {

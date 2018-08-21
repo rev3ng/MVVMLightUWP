@@ -1,18 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mime;
-using System.Text;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using App4.Models;
 using App4.Services;
 using App4.Views;
-using Microsoft.Practices.ServiceLocation;
 
 namespace App4.ViewModels
 {
@@ -35,7 +28,7 @@ namespace App4.ViewModels
 		/// </summary>
 		public ViewModelLocator()
 		{
-			ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+			//ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 			
 			
 			if (ViewModelBase.IsInDesignModeStatic)
@@ -72,9 +65,9 @@ namespace App4.ViewModels
 		// <value>
 		// The StartPage view model.
 		// </value>
-		public StartPageViewModel StartPageInstance => ServiceLocator.Current.GetInstance<StartPageViewModel>();
-		public AddPageViewModel AddPageInstance => ServiceLocator.Current.GetInstance<AddPageViewModel>();
-		public ViewPageViewModel ViewPageInstance => ServiceLocator.Current.GetInstance<ViewPageViewModel>();
+		public StartPageViewModel StartPageInstance => SimpleIoc.Default.GetInstance<StartPageViewModel>();
+		public AddPageViewModel AddPageInstance => SimpleIoc.Default.GetInstance<AddPageViewModel>();
+		public ViewPageViewModel ViewPageInstance => SimpleIoc.Default.GetInstance<ViewPageViewModel>();
 
 		// <summary>
 		// The cleanup.

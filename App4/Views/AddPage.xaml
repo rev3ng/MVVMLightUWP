@@ -9,9 +9,8 @@
     mc:Ignorable="d"
 	DataContext="{Binding AddPageInstance, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-	
+
 	<Page.Resources>
-		<conv:SalaryConverter x:Key="SalaryConverter"/>
 	</Page.Resources>
 
 	<Grid>
@@ -25,11 +24,18 @@
 		</Grid.RowDefinitions>
 
 		<StackPanel Padding="20" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
-			<TextBlock Text="Name"/>
-			<TextBox Text="{x:Bind Vm.Name, Mode=TwoWay}" PlaceholderText="Type Name here"/>
-			<TextBlock/>
+
+			<!--
+			<TextBox Text="{x:Bind Vm.Name, Mode=TwoWay}" 
+					 x:Name="CharactValidator"
+					 Header="Name"
+			         PlaceholderText="Type Name here"
+			         extensions:TextBoxRegex.ValidationMode="Dynamic"
+			         extensions:TextBoxRegex.ValidationType="Characters"/>
+			<TextBlock Text="{Binding (extensions:TextBoxRegex.IsValid), ElementName=CharactValidator}"/>
+			-->
 			<TextBlock Text="Salary"/>
-			<TextBox Text="{x:Bind Vm.Salary, Mode=TwoWay, Converter={StaticResource SalaryConverter}}" PlaceholderText="Type Salary here"/>
+			<TextBox Text="{x:Bind Vm.Salary, Mode=TwoWay}" PlaceholderText="Type Salary here"/>
 			<TextBlock/>
 			<TextBlock Text="Title"/>
 			<TextBox Text="{x:Bind Vm.Title, Mode=TwoWay}" PlaceholderText="Type Title here"/>

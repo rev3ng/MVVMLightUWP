@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using App4.Models;
 using App4.Services.Validation;
+using App4.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
@@ -101,6 +102,8 @@ namespace App4.ViewModels
 	
 		public void AddDataToDatabase()
 		{
+			
+
 			var key = System.Guid.NewGuid().ToString();
 			IEmployee newEmployee = SimpleIoc.Default.GetInstance<IEmployee>(key);
 			SimpleIoc.Default.Unregister(key);
