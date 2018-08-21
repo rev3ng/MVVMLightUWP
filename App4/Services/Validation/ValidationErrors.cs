@@ -7,13 +7,18 @@ using GalaSoft.MvvmLight;
 
 namespace App4.Services.Validation
 {
-	class ValidationErrors : ViewModelBase
+	public class ValidationErrors : ObservableObject
 	{
 		private readonly Dictionary<string, string> _validationErrors = new Dictionary<string, string>();
 
 		public bool IsValid
 		{
 			get { return this._validationErrors.Count < 1; }
+		}
+
+		public void Clear()
+		{
+			_validationErrors.Clear();
 		}
 
 		public string this[string fieldName]

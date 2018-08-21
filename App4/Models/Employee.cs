@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using App4.Services.Validation;
+using GalaSoft.MvvmLight;
 
 namespace App4.Models
 {

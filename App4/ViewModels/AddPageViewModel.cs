@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using App4.Models;
+using App4.Services.Validation;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
@@ -97,8 +98,7 @@ namespace App4.ViewModels
 				RaisePropertyChanged(nameof(Salary));
 			}
 		}
-
-
+	
 		public void AddDataToDatabase()
 		{
 			var key = System.Guid.NewGuid().ToString();
