@@ -10,8 +10,6 @@
 	DataContext="{Binding AddPageInstance, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-	<Page.Resources>
-	</Page.Resources>
 
 	<Grid>
 		<Grid.ColumnDefinitions>
@@ -25,7 +23,6 @@
 
 		<StackPanel Padding="20" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
 
-			<!--
 			<TextBox Text="{x:Bind Vm.Name, Mode=TwoWay}" 
 					 x:Name="CharactValidator"
 					 Header="Name"
@@ -33,7 +30,7 @@
 			         extensions:TextBoxRegex.ValidationMode="Dynamic"
 			         extensions:TextBoxRegex.ValidationType="Characters"/>
 			<TextBlock Text="{Binding (extensions:TextBoxRegex.IsValid), ElementName=CharactValidator}"/>
-			-->
+
 			<TextBlock Text="Salary"/>
 			<TextBox Text="{x:Bind Vm.Salary, Mode=TwoWay}" PlaceholderText="Type Salary here"/>
 			<TextBlock/>

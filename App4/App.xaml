@@ -8,7 +8,31 @@
 
 	<Application.Resources>
 
-		<viewModels:ViewModelLocator x:Key="Locator"/>
+		<ResourceDictionary>
+
+			<vm:ViewModelLocator xmlns:vm="using:App4.ViewModels" x:Key="Locator" />
+
+			<ResourceDictionary.ThemeDictionaries>
+				<ResourceDictionary x:Key="Default">
+					<AcrylicBrush x:Key="SidePanelAcrylicBrush"
+					              BackgroundSource="HostBackdrop"
+					              TintColor="#FFCCCCCC"
+					              TintOpacity="0.8"
+					              FallbackColor="#FFCCCCCC"/>
+					<AcrylicBrush x:Key="MainPanelAcrylicBrush"
+					              BackgroundSource="HostBackdrop"
+					              TintColor="#FFEEEEEE"
+					              TintOpacity="0.9"
+					              FallbackColor="#FFEEEEEE"/>
+					<AcrylicBrush x:Key="LoadingIndicatorAcrylicBrush"
+					              BackgroundSource="Backdrop"
+					              TintColor="#FFEEEEEE"
+					              TintOpacity="0.3"
+					              FallbackColor="#FFEEEEEE"/>
+				</ResourceDictionary>
+
+			</ResourceDictionary.ThemeDictionaries>
+		</ResourceDictionary>
 
 	</Application.Resources>
 
