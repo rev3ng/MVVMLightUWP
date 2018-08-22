@@ -51,10 +51,10 @@ namespace App4.ViewModels
 
 			//Register your services used here
 			SimpleIoc.Default.Register<INavigationService>(() => navig);
+			SimpleIoc.Default.Register<IEmployee, Employee>();
 			SimpleIoc.Default.Register<StartPageViewModel>();
 			SimpleIoc.Default.Register<AddPageViewModel>();
 			SimpleIoc.Default.Register<ViewPageViewModel>();
-			SimpleIoc.Default.Register<IEmployee ,Employee>();
 
 		}
 

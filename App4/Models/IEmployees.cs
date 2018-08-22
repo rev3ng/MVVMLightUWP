@@ -9,9 +9,9 @@ namespace App4.Models
 	/// </summary>
 	public interface IEmployeesActions
 	{ 
-		ObservableCollection<Employee> GetAllEmployees();
-		void AddEmployee(Employee employee);
-		void EditEmployee(Employee sourceEmployee, Employee destEmployee);
+		ObservableCollection<IEmployee> GetAllEmployees();
+		void AddEmployee(IEmployee employee);
+		void EditEmployee(IEmployee sourceEmployee, IEmployee destEmployee);
 	}
 
 	public interface IEmployee
@@ -21,5 +21,8 @@ namespace App4.Models
 		decimal? Salary { get; set; }
 		bool IsHired { get; set; }
 		string Surname { get; set; }
+		string Email { get; set; }
+
+		decimal SalaryConverter(string val);
 	}
 }

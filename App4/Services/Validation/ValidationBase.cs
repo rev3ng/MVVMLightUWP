@@ -29,6 +29,6 @@ namespace App4.Services.Validation
 			this.RaisePropertyChanged("ValidationErrors");
 		}
 
-		public abstract void ValidateSelf();
+		protected abstract void ValidateSelf();
 	}
 }

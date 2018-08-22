@@ -5,19 +5,19 @@ namespace App4.Models
 {
 	class FakeEmployeeRepository : IEmployeesActions
 	{
-		private static readonly ObservableCollection<Employee> Employees = new ObservableCollection<Employee>();
+		private static readonly ObservableCollection<IEmployee> Employees = new ObservableCollection<IEmployee>();
 
-		public ObservableCollection<Employee> GetAllEmployees()
+		public ObservableCollection<IEmployee> GetAllEmployees()
 		{
 			return Employees;
 		}
 
-		public void AddEmployee(Employee employee)
+		public void AddEmployee(IEmployee employee)
 		{
 			Employees.Add(employee);
 		}
 
-		public void EditEmployee(Employee sourceEmployee, Employee destEmployee)
+		public void EditEmployee(IEmployee sourceEmployee, IEmployee destEmployee)
 		{
 			throw new NotImplementedException();
 		}

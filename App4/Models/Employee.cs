@@ -1,15 +1,17 @@
-﻿using App4.Services.Validation;
+﻿using System;
+using App4.Services.Validation;
 using GalaSoft.MvvmLight;
 
 namespace App4.Models
 {
-	public class Employee : ObservableObject, IEmployee
+	public class Employee : ValidationBase, IEmployee
 	{
 		private int _id;
 		private string _name;
 		private decimal? _salary;
 		private bool _isHired;
 		private string _surname;
+		private string _email;
 
 		public int Id
 		{
@@ -41,9 +43,34 @@ namespace App4.Models
 			set { Set(() => IsHired, ref _isHired, value); }
 		}
 
+		public string Email
+		{
+			get => _email;
+			set { Set(() => Email, ref _email, value); }
+		}
+
+		public decimal SalaryConverter(string val)
+		{
+			decimal.TryParse(val, out decimal result);
+			return result;
+		}
+
 		public override string ToString()
 		{
 			return Name + " " + Salary.ToString();
+		}
+
+		protected override void ValidateSelf()
+		{
+			if (string.IsNullOrWhiteSpace(this._name))
+			{
+				this.ValidationErrors["Name"] = "Name is required.";
+			}
+
+			if (string.IsNullOrWhiteSpace(this._surname))
+			{
+				this.ValidationErrors["Surname"] = "Surname is required.";
+			}
 		}
 	}
 }

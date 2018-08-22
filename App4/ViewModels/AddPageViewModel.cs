@@ -16,90 +16,62 @@ namespace App4.ViewModels
 {
 	public class AddPageViewModel : ViewModelBase
 	{
-		private string _title;
-		private string _name;
-		private decimal? _salary;
-		private string _surname;
+
+		#region Private variables
+
 		private IEmployeesActions _repo;
-		public string Title
+		private string _id;
+		private string _name;
+		private string _salary;
+		private bool? _isHired;
+		private string _surname;
+		private string _email;
+
+		#endregion
+
+
+		#region Properties
+		public string Id
 		{
-
-			get
-			{
-				if (_title != null)
-				{
-					return _title;
-				}
-
-				return String.Empty;
-			}
-			set
-			{
-				if (value != _title)
-				{
-					_title = value.Trim();
-					RaisePropertyChanged(nameof(Title));
-				}
-			}
+			get => _id;
+			set { Set(() => Id, ref _id, value); }
 		}
 
 		public string Name
 		{
-
-			get
-			{
-				if (_name != null)
-				{
-					return _name;
-				}
-
-				return String.Empty;
-			}
-			set
-			{
-				_name = value.Trim();
-				RaisePropertyChanged(nameof(Name));
-			}
+			get => _name;
+			set { Set(() => Name, ref _name, value); }
 		}
 
 		public string Surname
 		{
-
-			get
-			{
-				if (_surname != null)
-				{
-					return _surname;
-				}
-
-				return String.Empty;
-			}
-			set
-			{
-				_surname = value.Trim();
-				RaisePropertyChanged(nameof(Surname));
-			}
+			get => _surname;
+			set { Set(() => Surname, ref _surname, value); }
 		}
 
-		public decimal? Salary
+		public string Salary
 		{
-
-			get
-			{
-				if (_salary != null)
-				{
-					return _salary;
-				}
-
-				return null;
-			}
-			set
-			{
-				_salary = value;
-				RaisePropertyChanged(nameof(Salary));
-			}
+			get => _salary;
+			set { Set(() => Salary, ref _salary, value); }
 		}
-	
+
+		public bool? IsHired
+		{
+			get => _isHired;
+			set { Set(() => IsHired, ref _isHired, value); }
+		}
+
+		public string Email
+		{
+			get => _email;
+			set { Set(() => Email, ref _email, value); }
+		}
+
+		public ValidationErrors ValidationErrors { get; private set; }
+
+#endregion
+
+
 		public void AddDataToDatabase()
 		{
 			
@@ -108,10 +80,17 @@ namespace App4.ViewModels
 			IEmployee newEmployee = SimpleIoc.Default.GetInstance<IEmployee>(key);
 			SimpleIoc.Default.Unregister(key);
 
-			newEmployee.Surname = Surname;
+			((ValidationBase) newEmployee).Validate();
+			ValidationErrors = ((ValidationBase) newEmployee).ValidationErrors;
+
 			newEmployee.Name = Name;
+			newEmployee.Surname = Surname;
+			newEmployee.Salary = newEmployee.SalaryConverter(Salary);
+			newEmployee.Email = Email;
 			newEmployee.Id = 0;
-			newEmployee.Salary = Salary;
+			newEmployee.IsHired = true;
+
+			_repo.AddEmployee(newEmployee);
 
 			ClearValues();
 
@@ -119,10 +98,12 @@ namespace App4.ViewModels
 
 		private void ClearValues()
 		{
-			Title = null;
-			Surname = null;
 			Name = null;
+			Surname = null;
+			Email = null;
 			Salary = null;
+			Id = null;
+			IsHired = null;
 		}
 
 

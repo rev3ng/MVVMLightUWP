@@ -6,10 +6,14 @@
 	xmlns:conv="using:App4.Converters"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
     mc:Ignorable="d"
 	DataContext="{Binding AddPageInstance, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+	<Page.Resources>
+		<conv:SalaryConverter x:Key="SalaryConverter"/>
+	</Page.Resources>
 
 	<Grid>
 		<Grid.ColumnDefinitions>
@@ -31,15 +35,29 @@
 			         extensions:TextBoxRegex.ValidationType="Characters"/>
 			<TextBlock Text="{Binding (extensions:TextBoxRegex.IsValid), ElementName=CharactValidator}"/>
 
-			<TextBlock Text="Salary"/>
-			<TextBox Text="{x:Bind Vm.Salary, Mode=TwoWay}" PlaceholderText="Type Salary here"/>
-			<TextBlock/>
-			<TextBlock Text="Title"/>
-			<TextBox Text="{x:Bind Vm.Title, Mode=TwoWay}" PlaceholderText="Type Title here"/>
-			<TextBlock/>
-			<TextBlock Text="Surname"/>
-			<TextBox Text="{x:Bind Vm.Surname, Mode=TwoWay}" PlaceholderText="Type Surname here"/>
-			<TextBlock/>
+			<TextBox Text="{x:Bind Vm.Surname, Mode=TwoWay}" 
+			         x:Name="SurnameValidator"
+			         Header="Surname"
+			         PlaceholderText="Type Surname here"
+			         extensions:TextBoxRegex.ValidationMode="Dynamic"
+			         extensions:TextBoxRegex.ValidationType="Characters"/>
+			<TextBlock Text="{Binding (extensions:TextBoxRegex.IsValid), ElementName=SurnameValidator}"/>
+
+			<TextBox Text="{x:Bind Vm.Salary, Mode=TwoWay}" 
+			         x:Name="SalaryValidator"
+			         Header="Salary"
+			         PlaceholderText="Type Salary here"
+			         extensions:TextBoxRegex.ValidationMode="Dynamic"
+			         extensions:TextBoxRegex.ValidationType="Number"/>
+			<TextBlock Text="{Binding (extensions:TextBoxRegex.IsValid), ElementName=SalaryValidator}"/>
+
+			<TextBox Text="{x:Bind Vm.Email, Mode=TwoWay}" 
+			         x:Name="EmailValidator"
+			         Header="Email"
+			         PlaceholderText="Type Email here"
+			         extensions:TextBoxRegex.ValidationMode="Dynamic"
+			         extensions:TextBoxRegex.ValidationType="Email"/>
+			<TextBlock Text="{Binding (extensions:TextBoxRegex.IsValid), ElementName=EmailValidator}"/>
 		</StackPanel>
 		
 		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0"/>
