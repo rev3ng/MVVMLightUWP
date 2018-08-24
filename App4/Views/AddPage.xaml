@@ -11,9 +11,7 @@
 	DataContext="{Binding AddPageInstance, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-	<Page.Resources>
-		<conv:SalaryConverter x:Key="SalaryConverter"/>
-	</Page.Resources>
+
 
 	<Grid>
 		<Grid.ColumnDefinitions>
@@ -32,8 +30,9 @@
 					 Header="Name"
 			         PlaceholderText="Type Name here"
 			         extensions:TextBoxRegex.ValidationMode="Dynamic"
-			         extensions:TextBoxRegex.ValidationType="Characters"/>
-			<TextBlock Text="{Binding (extensions:TextBoxRegex.IsValid), ElementName=CharactValidator}"/>
+			         extensions:TextBoxRegex.ValidationType="Characters">
+			</TextBox>
+			<TextBlock Text="{Binding [Name], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
 			<TextBox Text="{x:Bind Vm.Surname, Mode=TwoWay}" 
 			         x:Name="SurnameValidator"
@@ -41,7 +40,7 @@
 			         PlaceholderText="Type Surname here"
 			         extensions:TextBoxRegex.ValidationMode="Dynamic"
 			         extensions:TextBoxRegex.ValidationType="Characters"/>
-			<TextBlock Text="{Binding (extensions:TextBoxRegex.IsValid), ElementName=SurnameValidator}"/>
+			<TextBlock Text="{x:Bind Vm}"/>
 
 			<TextBox Text="{x:Bind Vm.Salary, Mode=TwoWay}" 
 			         x:Name="SalaryValidator"

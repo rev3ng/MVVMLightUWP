@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Controls;
 using App4.Models;
 using App4.Services.Validation;
 using App4.Views;
@@ -14,7 +15,7 @@ using GalaSoft.MvvmLight.Views;
 
 namespace App4.ViewModels
 {
-	public class AddPageViewModel : ViewModelBase
+	public class AddPageViewModel : ValidationBase
 	{
 
 		#region Private variables
@@ -67,22 +68,31 @@ namespace App4.ViewModels
 			set { Set(() => Email, ref _email, value); }
 		}
 
-		public ValidationErrors ValidationErrors { get; private set; }
 
-#endregion
+		#endregion
+
+
+		protected override void ValidateSelf()
+		{
+			if (string.IsNullOrWhiteSpace(this._name))
+			{
+				this.ValidationErrors["Name"] = "Name is required.";
+			}
+
+			if (string.IsNullOrWhiteSpace(this._surname))
+			{
+				this.ValidationErrors["Surname"] = "Surname is required.";
+			}
+		}
+
 
 
 		public void AddDataToDatabase()
 		{
 			
-
-			var key = System.Guid.NewGuid().ToString();
-			IEmployee newEmployee = SimpleIoc.Default.GetInstance<IEmployee>(key);
-			SimpleIoc.Default.Unregister(key);
-
-			((ValidationBase) newEmployee).Validate();
-			ValidationErrors = ((ValidationBase) newEmployee).ValidationErrors;
-
+			Employee newEmployee = (Employee) SimpleIoc.Default.GetInstanceWithoutCaching<IEmployee>();
+			
+		
 			newEmployee.Name = Name;
 			newEmployee.Surname = Surname;
 			newEmployee.Salary = newEmployee.SalaryConverter(Salary);
@@ -90,9 +100,12 @@ namespace App4.ViewModels
 			newEmployee.Id = 0;
 			newEmployee.IsHired = true;
 
-			_repo.AddEmployee(newEmployee);
+			newEmployee.Validate();
 
-			ClearValues();
+			_repo.AddEmployee(newEmployee);
+			Validate();
+			//this.ValidationErrors[]
+			//ClearValues();
 
 		}
 
@@ -105,7 +118,6 @@ namespace App4.ViewModels
 			Id = null;
 			IsHired = null;
 		}
-
 
 		public AddPageViewModel(IEmployeesActions repo)
 		{

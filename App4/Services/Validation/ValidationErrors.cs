@@ -7,7 +7,7 @@ using GalaSoft.MvvmLight;
 
 namespace App4.Services.Validation
 {
-	public class ValidationErrors : ObservableObject
+	public class ValidationErrors : ViewModelBase
 	{
 		private readonly Dictionary<string, string> _validationErrors = new Dictionary<string, string>();
 
@@ -51,7 +51,7 @@ namespace App4.Services.Validation
 					}
 				}
 
-				this.RaisePropertyChanged();
+				this.RaisePropertyChanged(nameof(fieldName));
 				this.RaisePropertyChanged("InValid");
 			}
 		}

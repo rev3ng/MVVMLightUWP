@@ -7,7 +7,7 @@ using GalaSoft.MvvmLight;
 
 namespace App4.Services.Validation
 {
-	public abstract class ValidationBase : ObservableObject
+	public abstract class ValidationBase : ValidationErrors
 	{
 
 		protected ValidationBase()
