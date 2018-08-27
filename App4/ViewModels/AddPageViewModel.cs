@@ -4,95 +4,46 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.System;
 using Windows.UI.Xaml.Controls;
 using App4.Models;
-using App4.Services.Validation;
 using App4.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
+using App4.Services.UserService;
+using Template10.Interfaces.Validation;
 
 namespace App4.ViewModels
 {
-	public class AddPageViewModel : ValidationBase
+	public class AddPageViewModel : ViewModelBase
 	{
 
 		#region Private variables
 
 		private IEmployeesActions _repo;
-		private string _id;
-		private string _name;
-		private string _salary;
-		private bool? _isHired;
-		private string _surname;
-		private string _email;
 
 		#endregion
 
+		public  ObservableCollection<Employee> NewEmployees { get; } = new ObservableCollection<Employee>();
 
-		#region Properties
-		public string Id
+		private Employee _selected;
+
+		public Employee SelectedEmployee { get => _selected;
+			set { Set(ref _selected, value); }
+		}
+		public Employee newEmployee = (Employee)SimpleIoc.Default.GetInstanceWithoutCaching<IEmployee>();
+		void Validate(IValidatableModel user)
 		{
-			get => _id;
-			set { Set(() => Id, ref _id, value); }
+			Validator.ValidateEmployee(user as Employee);
 		}
 
-		public string Name
+		/*public void AddDataToDatabase()
 		{
-			get => _name;
-			set { Set(() => Name, ref _name, value); }
-		}
 
-		public string Surname
-		{
-			get => _surname;
-			set { Set(() => Surname, ref _surname, value); }
-		}
+			newEmployee.Validator = e => Validate(e);
 
-		public string Salary
-		{
-			get => _salary;
-			set { Set(() => Salary, ref _salary, value); }
-		}
-
-		public bool? IsHired
-		{
-			get => _isHired;
-			set { Set(() => IsHired, ref _isHired, value); }
-		}
-
-		public string Email
-		{
-			get => _email;
-			set { Set(() => Email, ref _email, value); }
-		}
-
-
-		#endregion
-
-
-		protected override void ValidateSelf()
-		{
-			if (string.IsNullOrWhiteSpace(this._name))
-			{
-				this.ValidationErrors["Name"] = "Name is required.";
-			}
-
-			if (string.IsNullOrWhiteSpace(this._surname))
-			{
-				this.ValidationErrors["Surname"] = "Surname is required.";
-			}
-		}
-
-
-
-		public void AddDataToDatabase()
-		{
-			
-			Employee newEmployee = (Employee) SimpleIoc.Default.GetInstanceWithoutCaching<IEmployee>();
-			
-		
 			newEmployee.Name = Name;
 			newEmployee.Surname = Surname;
 			newEmployee.Salary = newEmployee.SalaryConverter(Salary);
@@ -101,14 +52,22 @@ namespace App4.ViewModels
 			newEmployee.IsHired = true;
 
 			newEmployee.Validate();
-
+			
 			_repo.AddEmployee(newEmployee);
-			Validate();
 			//this.ValidationErrors[]
 			//ClearValues();
 
 		}
+		*/
 
+		public void AddDataToDatabase2()
+		{
+			//SelectedEmployee.Validator = e => Validate(e);
+			_repo.AddEmployee(SelectedEmployee);
+
+		}
+
+		/*
 		private void ClearValues()
 		{
 			Name = null;
@@ -118,10 +77,12 @@ namespace App4.ViewModels
 			Id = null;
 			IsHired = null;
 		}
+		*/
 
 		public AddPageViewModel(IEmployeesActions repo)
 		{
 			_repo = repo;
+			_selected = new Employee{Validator = e => Validate(e)};
 		}
 
 

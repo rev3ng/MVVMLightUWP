@@ -4,13 +4,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:App4.Views"
 	xmlns:conv="using:App4.Converters"
+	xmlns:model="using:App4.Models"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:extensions="using:Microsoft.Toolkit.Uwp.UI.Extensions"
+    xmlns:validation="using:Template10.Controls.Validation"
     mc:Ignorable="d"
 	DataContext="{Binding AddPageInstance, Source={StaticResource Locator}}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+	
+	<Page.Resources>
+		<conv:SalaryConverter x:Key="SalaryConverter"/>
+	</Page.Resources>
 
 
 	<Grid>
@@ -23,17 +29,45 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
-		<StackPanel Padding="20" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300">
+		<StackPanel x:Name="StackPanel" Padding="20" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" DataContext="{Binding SelectedEmployee}">
 
-			<TextBox Text="{x:Bind Vm.Name, Mode=TwoWay}" 
-					 x:Name="CharactValidator"
-					 Header="Name"
-			         PlaceholderText="Type Name here"
-			         extensions:TextBoxRegex.ValidationMode="Dynamic"
-			         extensions:TextBoxRegex.ValidationType="Characters">
-			</TextBox>
-			<TextBlock Text="{Binding [Name], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+			<validation:ControlWrapper PropertyName="Name">
+				<TextBox Width="260"
+				         Header="Name"
+				         Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+				         />
+			</validation:ControlWrapper>
 
+			<validation:ControlWrapper PropertyName="Surname">
+				<TextBox Width="260"
+				         Header="Surname"
+				         Text="{Binding Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+				/>
+			</validation:ControlWrapper>
+
+			<validation:ControlWrapper PropertyName="Email">
+				<TextBox Width="260"
+				         Header="Email"
+				         Text="{Binding Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+				/>
+			</validation:ControlWrapper>
+
+			<validation:ControlWrapper PropertyName="Salary">
+				<TextBox Width="260"
+				         Header="Salary"
+				         Text="{Binding Salary, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource SalaryConverter}}" 
+				/>
+			</validation:ControlWrapper>
+			
+			<TextBlock>Is hired?</TextBlock>
+
+			<validation:ControlWrapper Margin="0,5" PropertyName="IsHired">
+				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+					<RadioButton GroupName="IsHiredRadio" IsChecked="{Binding IsHired, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Yes</RadioButton>
+					<RadioButton GroupName="IsHiredRadio">No</RadioButton>
+				</StackPanel>
+			</validation:ControlWrapper>
+			<!--
 			<TextBox Text="{x:Bind Vm.Surname, Mode=TwoWay}" 
 			         x:Name="SurnameValidator"
 			         Header="Surname"
@@ -57,12 +91,13 @@
 			         extensions:TextBoxRegex.ValidationMode="Dynamic"
 			         extensions:TextBoxRegex.ValidationType="Email"/>
 			<TextBlock Text="{Binding (extensions:TextBoxRegex.IsValid), ElementName=EmailValidator}"/>
+			-->
 		</StackPanel>
 		
 		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0"/>
 
 		<Button Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" 
-		        Click="{x:Bind Vm.AddDataToDatabase}" Content="Add person to database"/>
+		        Click="{x:Bind Vm.AddDataToDatabase2}" Content="Add person to database"/>
 
 	</Grid>
 </Page>

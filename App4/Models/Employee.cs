@@ -1,52 +1,46 @@
 ﻿using System;
-using App4.Services.Validation;
 using GalaSoft.MvvmLight;
+using Template10.Validation;
 
 namespace App4.Models
 {
-	public class Employee : ValidationBase, IEmployee
+	public class Employee : ValidatableModelBase, IEmployee
 	{
-		private int _id;
-		private string _name;
-		private decimal? _salary;
-		private bool _isHired;
-		private string _surname;
-		private string _email;
 
 		public int Id
 		{
-			get => _id;
-			set { Set(() => Id, ref _id, value); }
+			get { return Read<int>(); }
+			set { Write(value); }
 		}
 
 		public string Name
 		{
-			get => _name;
-			set { Set(() => Name, ref _name, value); }
+			get { return Read<string>(); }
+			set { Write(value); }
 		}
 
 		public string Surname
 		{
-			get => _surname;
-			set { Set(() => Surname, ref _surname, value); }
+			get { return Read<string>(); }
+			set { Write(value); }
 		}
 
 		public decimal? Salary
 		{
-			get => _salary;
-			set { Set(() => Salary, ref _salary, value); }
+			get { return Read<decimal?>(); }
+			set { Write(value); }
 		}
 
-		public bool IsHired
+		public bool? IsHired
 		{
-			get => _isHired;
-			set { Set(() => IsHired, ref _isHired, value); }
+			get { return Read<bool?>(); }
+			set { Write(value); }
 		}
 
 		public string Email
 		{
-			get => _email;
-			set { Set(() => Email, ref _email, value); }
+			get { return Read<string>(); }
+			set { Write(value); }
 		}
 
 		public decimal SalaryConverter(string val)
@@ -60,17 +54,5 @@ namespace App4.Models
 			return Name + " " + Salary.ToString();
 		}
 
-		protected override void ValidateSelf()
-		{
-			if (string.IsNullOrWhiteSpace(this._name))
-			{
-				this.ValidationErrors["Name"] = "Name is required.";
-			}
-
-			if (string.IsNullOrWhiteSpace(this._surname))
-			{
-				this.ValidationErrors["Surname"] = "Surname is required.";
-			}
-		}
 	}
 }

@@ -19,7 +19,7 @@ namespace App4.Models
 		int Id { get; set; }
 		string Name { get; set; }
 		decimal? Salary { get; set; }
-		bool IsHired { get; set; }
+		bool? IsHired { get; set; }
 		string Surname { get; set; }
 		string Email { get; set; }
 
