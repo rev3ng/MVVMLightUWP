@@ -16,6 +16,7 @@
 	
 	<Page.Resources>
 		<conv:SalaryConverter x:Key="SalaryConverter"/>
+		<conv:IsHiredConverter x:Key="IsHiredConverter"/>
 	</Page.Resources>
 
 
@@ -63,35 +64,10 @@
 
 			<validation:ControlWrapper Margin="0,5" PropertyName="IsHired">
 				<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-					<RadioButton GroupName="IsHiredRadio" IsChecked="{Binding IsHired, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">Yes</RadioButton>
-					<RadioButton GroupName="IsHiredRadio">No</RadioButton>
+					<RadioButton GroupName="IsHiredRadio" IsChecked="{Binding IsHired, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource IsHiredConverter}, ConverterParameter=true}" IsThreeState="True">Yes</RadioButton>
+					<RadioButton GroupName="IsHiredRadio" IsChecked="{Binding IsHired, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource IsHiredConverter}, ConverterParameter=false}" IsThreeState="True">No</RadioButton>
 				</StackPanel>
 			</validation:ControlWrapper>
-			<!--
-			<TextBox Text="{x:Bind Vm.Surname, Mode=TwoWay}" 
-			         x:Name="SurnameValidator"
-			         Header="Surname"
-			         PlaceholderText="Type Surname here"
-			         extensions:TextBoxRegex.ValidationMode="Dynamic"
-			         extensions:TextBoxRegex.ValidationType="Characters"/>
-			<TextBlock Text="{x:Bind Vm}"/>
-
-			<TextBox Text="{x:Bind Vm.Salary, Mode=TwoWay}" 
-			         x:Name="SalaryValidator"
-			         Header="Salary"
-			         PlaceholderText="Type Salary here"
-			         extensions:TextBoxRegex.ValidationMode="Dynamic"
-			         extensions:TextBoxRegex.ValidationType="Number"/>
-			<TextBlock Text="{Binding (extensions:TextBoxRegex.IsValid), ElementName=SalaryValidator}"/>
-
-			<TextBox Text="{x:Bind Vm.Email, Mode=TwoWay}" 
-			         x:Name="EmailValidator"
-			         Header="Email"
-			         PlaceholderText="Type Email here"
-			         extensions:TextBoxRegex.ValidationMode="Dynamic"
-			         extensions:TextBoxRegex.ValidationType="Email"/>
-			<TextBlock Text="{Binding (extensions:TextBoxRegex.IsValid), ElementName=EmailValidator}"/>
-			-->
 		</StackPanel>
 		
 		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0"/>

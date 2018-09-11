@@ -14,6 +14,7 @@ using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using App4.Services.UserService;
 using Template10.Interfaces.Validation;
+using System.Reflection;
 
 namespace App4.ViewModels
 {
@@ -26,63 +27,58 @@ namespace App4.ViewModels
 
 		#endregion
 
-		public  ObservableCollection<Employee> NewEmployees { get; } = new ObservableCollection<Employee>();
-
 		private Employee _selected;
 
 		public Employee SelectedEmployee { get => _selected;
-			set { Set(ref _selected, value); }
+			set { Set(ref _selected, value, true, nameof(SelectedEmployee)); }
 		}
-		public Employee newEmployee = (Employee)SimpleIoc.Default.GetInstanceWithoutCaching<IEmployee>();
 		void Validate(IValidatableModel user)
 		{
 			Validator.ValidateEmployee(user as Employee);
 		}
 
-		/*public void AddDataToDatabase()
-		{
-
-			newEmployee.Validator = e => Validate(e);
-
-			newEmployee.Name = Name;
-			newEmployee.Surname = Surname;
-			newEmployee.Salary = newEmployee.SalaryConverter(Salary);
-			newEmployee.Email = Email;
-			newEmployee.Id = 0;
-			newEmployee.IsHired = true;
-
-			newEmployee.Validate();
-			
-			_repo.AddEmployee(newEmployee);
-			//this.ValidationErrors[]
-			//ClearValues();
-
-		}
-		*/
-
 		public void AddDataToDatabase2()
 		{
 			//SelectedEmployee.Validator = e => Validate(e);
-			_repo.AddEmployee(SelectedEmployee);
+			SelectedEmployee.Validate();
+			if (SelectedEmployee.IsValid)
+			{
+				Employee temp = _selected;
+				_repo.AddEmployee(temp);
+				ClearValues();
+				//SelectedEmployee = GetEmptyEmployee();
+			}
+			else
+			{
+				;
+			}
 
 		}
 
-		/*
+		
 		private void ClearValues()
 		{
-			Name = null;
-			Surname = null;
-			Email = null;
-			Salary = null;
-			Id = null;
-			IsHired = null;
+			SelectedEmployee.Name = null;
+			SelectedEmployee.Surname = null;
+			SelectedEmployee.Email = null;
+			SelectedEmployee.IsHired = null;
+			SelectedEmployee.Salary = null;
+
 		}
-		*/
+		
+
+		private Employee GetEmptyEmployee ()
+		{
+			Employee newEmployee = (Employee)SimpleIoc.Default.GetInstanceWithoutCaching<IEmployee>();
+			newEmployee.Validator = e => Validate(e);
+			return newEmployee;
+		}
 
 		public AddPageViewModel(IEmployeesActions repo)
 		{
 			_repo = repo;
-			_selected = new Employee{Validator = e => Validate(e)};
+			_selected = GetEmptyEmployee();
+			_selected.Validate();
 		}
 
 

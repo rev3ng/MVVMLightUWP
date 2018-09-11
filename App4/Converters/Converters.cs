@@ -30,4 +30,40 @@ namespace App4.Converters
 			return null;
 		}
 	}
+
+	public class IsHiredConverter : IValueConverter
+	{
+		public object Convert(object value, Type targetType, object parameter, string language)
+		{
+			if (value == null)
+			{
+				return null;
+			}
+			else if ((bool) value == true && parameter.Equals("false"))
+			{
+				return false;
+			}
+
+			return value;
+		}
+
+		public object ConvertBack(object value, Type targetType, object parameter, string language)
+		{
+
+			if (value != null)
+			{
+
+				if (parameter.Equals("true"))
+				{
+					return true;
+				}
+				else if (parameter.Equals("false"))
+				{
+					return false;
+				}
+			}
+
+			return null;
+		}
+	}
 }
