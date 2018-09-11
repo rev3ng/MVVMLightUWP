@@ -67,7 +67,7 @@ namespace App4.ViewModels
 		// </value>
 		public StartPageViewModel StartPageInstance => SimpleIoc.Default.GetInstance<StartPageViewModel>();
 		public AddPageViewModel AddPageInstance => SimpleIoc.Default.GetInstance<AddPageViewModel>();
-		public ViewPageViewModel ViewPageInstance => SimpleIoc.Default.GetInstance<ViewPageViewModel>();
+		public ViewPageViewModel ViewPageInstance => SimpleIoc.Default.GetInstanceWithoutCaching<ViewPageViewModel>();
 
 		// <summary>
 		// The cleanup.

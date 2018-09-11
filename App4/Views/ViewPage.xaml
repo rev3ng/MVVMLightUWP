@@ -11,46 +11,60 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
 	<Grid>
-		<ListView ItemsSource="{x:Bind Vm.Employees}" Margin="20" extensions:ListViewExtensions.AlternateColor="{ThemeResource SystemControlBackgroundBaseLowBrush}">
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
 
-			<ListView.HeaderTemplate>
-				<DataTemplate>
-					<Grid Padding="12" Background="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}">
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="408"/>
-							<ColumnDefinition Width="360"/>
-							<ColumnDefinition Width="360"/>
-							<ColumnDefinition Width="360"/>
-						</Grid.ColumnDefinitions>
-						<TextBlock Text="Name" Style="{ThemeResource CaptionTextBlockStyle}"/>
-						<TextBlock Grid.Column="1" Text="Surname" Style="{ThemeResource CaptionTextBlockStyle}"/>
-						<TextBlock Grid.Column="2" Text="Email" Style="{ThemeResource CaptionTextBlockStyle}"/>
-						<TextBlock Grid.Column="3" Text="Salary" Style="{ThemeResource CaptionTextBlockStyle}"/>
-					</Grid>
-				</DataTemplate>
-			</ListView.HeaderTemplate>
-			<ListView.ItemTemplate>
-				<DataTemplate>
-					<Grid>
-						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="48"/>
-							<ColumnDefinition Width="360"/>
-							<ColumnDefinition Width="360"/>
-							<ColumnDefinition Width="360"/>
-							<ColumnDefinition Width="360"/>
-						</Grid.ColumnDefinitions>
-						<Ellipse Height="32" Width="32" VerticalAlignment="Center">
-							<Ellipse.Fill>
-								<SolidColorBrush Color="Gray"/>
-							</Ellipse.Fill>
-						</Ellipse>
-						<TextBlock Grid.Column="1" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Text="{Binding Name}" />
-						<TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding Surname}"/>
-						<TextBlock Grid.Column="3" VerticalAlignment="Center" Text="{Binding Email}"/>
-						<TextBlock Grid.Column="4" VerticalAlignment="Center" Text="{Binding Salary}"/>
-					</Grid>
-				</DataTemplate>
-			</ListView.ItemTemplate>
-		</ListView>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+
+		<StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+			<ListView ItemsSource="{x:Bind Vm.Employees, }" Margin="20" 
+		          extensions:ListViewExtensions.AlternateColor="{ThemeResource SystemControlBackgroundBaseLowBrush}">
+
+				<ListView.HeaderTemplate>
+					<DataTemplate>
+						<Grid Padding="12" Background="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition MinWidth="208"/>
+								<ColumnDefinition MinWidth="180"/>
+								<ColumnDefinition MinWidth="180"/>
+								<ColumnDefinition MinWidth="180"/>
+							</Grid.ColumnDefinitions>
+							<TextBlock Text="Name" Style="{ThemeResource CaptionTextBlockStyle}"/>
+							<TextBlock Grid.Column="1" Text="Surname" Style="{ThemeResource CaptionTextBlockStyle}"/>
+							<TextBlock Grid.Column="2" Text="Email" Style="{ThemeResource CaptionTextBlockStyle}"/>
+							<TextBlock Grid.Column="3" Text="Salary" Style="{ThemeResource CaptionTextBlockStyle}"/>
+						</Grid>
+					</DataTemplate>
+				</ListView.HeaderTemplate>
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<Grid>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition MinWidth="48"/>
+								<ColumnDefinition MinWidth="160"/>
+								<ColumnDefinition MinWidth="180"/>
+								<ColumnDefinition MinWidth="180"/>
+								<ColumnDefinition MinWidth="180"/>
+							</Grid.ColumnDefinitions>
+							<Ellipse Height="32" Width="32" VerticalAlignment="Center">
+								<Ellipse.Fill>
+									<SolidColorBrush Color="LightGray"/>
+								</Ellipse.Fill>
+							</Ellipse>
+							<TextBlock Grid.Column="1" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Text="{Binding Name}" />
+							<TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding Surname}"/>
+							<TextBlock Grid.Column="3" VerticalAlignment="Center" Text="{Binding Email}"/>
+							<TextBlock Grid.Column="4" VerticalAlignment="Center" Text="{Binding Salary}"/>
+						</Grid>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+		</StackPanel>
+		<Button Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,30" Padding="20" Content="Sort by name" HorizontalAlignment="Center" Click="{x:Bind Vm.SortCollection}"/>
 	</Grid>
 </Page>
