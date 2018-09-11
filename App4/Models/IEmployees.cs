@@ -12,6 +12,7 @@ namespace App4.Models
 		ObservableCollection<IEmployee> GetAllEmployees();
 		void AddEmployee(IEmployee employee);
 		void EditEmployee(IEmployee sourceEmployee, IEmployee destEmployee);
+		IEmployee CloneEmployee(IEmployee sourceEmployee);
 	}
 
 	public interface IEmployee
@@ -23,6 +24,5 @@ namespace App4.Models
 		string Surname { get; set; }
 		string Email { get; set; }
 
-		decimal SalaryConverter(string val);
 	}
 }

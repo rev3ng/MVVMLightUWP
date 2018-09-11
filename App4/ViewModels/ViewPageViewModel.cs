@@ -15,35 +15,11 @@ namespace App4.ViewModels
 {
 	public class ViewPageViewModel : ViewModelBase
 	{
-		private bool _isLoading;
-		public bool IsLoading
-		{
-			get => _isLoading;
-			set
-			{
-				_isLoading = value;
-				RaisePropertyChanged("IsLoading");
-
-			}
-		}
-		private string _title;
-		public string Title
-		{
-
-			get => _title;
-			set
-			{
-				if (value != _title)
-				{
-					_title = value;
-					RaisePropertyChanged("Title");
-				}
-			}
-		}
+		public ObservableCollection<IEmployee> Employees = null;
 
 		public ViewPageViewModel()
 		{
-			Title = "View PAGE";
+			Employees = new FakeEmployeeRepository().GetAllEmployees();
 		}
 	}
 

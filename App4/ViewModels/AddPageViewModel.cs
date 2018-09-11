@@ -43,8 +43,7 @@ namespace App4.ViewModels
 			SelectedEmployee.Validate();
 			if (SelectedEmployee.IsValid)
 			{
-				Employee temp = _selected;
-				_repo.AddEmployee(temp);
+				_repo.AddEmployee(SelectedEmployee);
 				ClearValues();
 				//SelectedEmployee = GetEmptyEmployee();
 			}

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.Ioc;
 
 namespace App4.Models
 {
@@ -12,14 +13,36 @@ namespace App4.Models
 			return Employees;
 		}
 
+		public FakeEmployeeRepository()
+		{
+			for (int i = 0; i < 30; i++)
+			{
+				Employees.Add(new Employee{Name = $"Name + i", Surname = $"Surname + i", Salary = 1200M, Email = $"mail@mail + i", IsHired = true});
+			}
+		}
+
 		public void AddEmployee(IEmployee employee)
 		{
-			Employees.Add(employee);
+			Employees.Add(CloneEmployee(employee));
 		}
 
 		public void EditEmployee(IEmployee sourceEmployee, IEmployee destEmployee)
 		{
 			throw new NotImplementedException();
+		}
+
+		public IEmployee CloneEmployee(IEmployee sourceEmployee)
+		{
+			var result = SimpleIoc.Default.GetInstanceWithoutCaching<IEmployee>();
+
+			result.Name = sourceEmployee.Name;
+			result.Email = sourceEmployee.Email;
+			result.Id = sourceEmployee.Id;
+			result.IsHired = sourceEmployee.IsHired;
+			result.Salary = sourceEmployee.Salary;
+			result.Surname = sourceEmployee.Surname;
+
+			return result;
 		}
 	}
 }
