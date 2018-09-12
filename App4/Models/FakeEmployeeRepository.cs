@@ -15,7 +15,7 @@ namespace App4.Models
 
 		public FakeEmployeeRepository()
 		{
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < 30; i++)
 			{
 				Employees.Add(new Employee{Name = $"{i}Name", Surname = $"{i}Surname", Salary = 1200M, Email = $"mail@mail + {i}", IsHired = true});
 			}

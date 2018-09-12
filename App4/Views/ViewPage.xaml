@@ -16,69 +16,67 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 
-		<StackPanel Grid.Row="0">
-			<ListView ItemsSource="{x:Bind Vm.Employees}" Margin="20"
+		<ListView Grid.Row="0" ItemsSource="{x:Bind Vm.Employees}" Margin="20" 
 		          extensions:ListViewExtensions.AlternateColor="{ThemeResource SystemControlBackgroundBaseLowBrush}">
 
-				
-				<ListView.ItemContainerStyle>
-					<Style TargetType="ListViewItem">
-						<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-					</Style>
-				</ListView.ItemContainerStyle>
-				
-				<ListView.HeaderTemplate>
-					<DataTemplate>
-						<StackPanel>
-							<Grid Padding="12" Background="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}" HorizontalAlignment="Stretch">
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition MinWidth="208" Width="*"/>
-									<ColumnDefinition MinWidth="180" Width="*"/>
-									<ColumnDefinition MinWidth="180" Width="*"/>
-									<ColumnDefinition MinWidth="180" Width="*"/>
-								</Grid.ColumnDefinitions>
-								<TextBlock Text="Name" Style="{ThemeResource CaptionTextBlockStyle}"/>
-								<TextBlock Grid.Column="1" Text="Surname" Style="{ThemeResource CaptionTextBlockStyle}"/>
-								<TextBlock Grid.Column="2" Text="Email" Style="{ThemeResource CaptionTextBlockStyle}"/>
-								<TextBlock Grid.Column="3" Text="Salary" Style="{ThemeResource CaptionTextBlockStyle}"/>
-							</Grid>
+
+			<ListView.ItemContainerStyle>
+				<Style TargetType="ListViewItem">
+					<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+				</Style>
+			</ListView.ItemContainerStyle>
+
+			<ListView.HeaderTemplate>
+				<DataTemplate>
+
+					<Grid Padding="12" Background="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}" HorizontalAlignment="Stretch">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition MinWidth="208" Width="*"/>
+							<ColumnDefinition MinWidth="180" Width="*"/>
+							<ColumnDefinition MinWidth="180" Width="*"/>
+							<ColumnDefinition MinWidth="180" Width="*"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Text="Name" Style="{ThemeResource CaptionTextBlockStyle}"/>
+						<TextBlock Grid.Column="1" Text="Surname" Style="{ThemeResource CaptionTextBlockStyle}"/>
+						<TextBlock Grid.Column="2" Text="Email" Style="{ThemeResource CaptionTextBlockStyle}"/>
+						<TextBlock Grid.Column="3" Text="Salary" Style="{ThemeResource CaptionTextBlockStyle}"/>
+					</Grid>
+
+				</DataTemplate>
+			</ListView.HeaderTemplate>
+			<ListView.ItemTemplate>
+				<DataTemplate>
+
+					<Grid>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="0"/>
+							<ColumnDefinition MinWidth="208" Width="*"/>
+							<ColumnDefinition MinWidth="180" Width="*"/>
+							<ColumnDefinition MinWidth="180" Width="*"/>
+							<ColumnDefinition MinWidth="180" Width="*"/>
+						</Grid.ColumnDefinitions>
+
+						<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Column="1" >
+							<Ellipse Height="32" Width="32" VerticalAlignment="Center">
+								<Ellipse.Fill>
+									<SolidColorBrush Color="LightGray"/>
+								</Ellipse.Fill>
+							</Ellipse>
+							<TextBlock VerticalAlignment="Center" Margin="5,0,0,0" Style="{ThemeResource BaseTextBlockStyle}" Text="{Binding Name}" />
 						</StackPanel>
-					</DataTemplate>
-				</ListView.HeaderTemplate>
-				<ListView.ItemTemplate>
-					<DataTemplate>
-						<StackPanel>
-							<Grid>
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="0"/>
-									<ColumnDefinition MinWidth="208" Width="*"/>
-									<ColumnDefinition MinWidth="180" Width="*"/>
-									<ColumnDefinition MinWidth="180" Width="*"/>
-									<ColumnDefinition MinWidth="180" Width="*"/>
-								</Grid.ColumnDefinitions>
-
-								<StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Column="1" >
-									<Ellipse Height="32" Width="32" VerticalAlignment="Center">
-										<Ellipse.Fill>
-											<SolidColorBrush Color="LightGray"/>
-										</Ellipse.Fill>
-									</Ellipse>
-									<TextBlock VerticalAlignment="Center" Margin="5,0,0,0" Style="{ThemeResource BaseTextBlockStyle}" Text="{Binding Name}" />
-								</StackPanel>
 
 
-								<TextBlock Grid.Column="2" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Text="{Binding Surname}"/>
-								<TextBlock Grid.Column="3" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Text="{Binding Email}"/>
-								<TextBlock Grid.Column="4" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Text="{Binding Salary}"/>
-							</Grid>
-						</StackPanel>
-					</DataTemplate>
-				</ListView.ItemTemplate>
-			</ListView>
-		</StackPanel>
+						<TextBlock Grid.Column="2" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Text="{Binding Surname}"/>
+						<TextBlock Grid.Column="3" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Text="{Binding Email}"/>
+						<TextBlock Grid.Column="4" VerticalAlignment="Center" Style="{ThemeResource BaseTextBlockStyle}" Text="{Binding Salary}"/>
+					</Grid>
 
-		<Button Grid.Row="1" Grid.Column="0" Margin="0,0,0,30" Padding="20"
-		        Content="Sort by name" HorizontalAlignment="Center" 
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+
+		<Button Grid.Row="1" Grid.Column="0" Margin="0,20,0,30" Padding="20"
+		        Content="Sort by name" HorizontalAlignment="Center"
 		        Click="{x:Bind Vm.SortCollection}"/>
 	</Grid>
 </Page>
