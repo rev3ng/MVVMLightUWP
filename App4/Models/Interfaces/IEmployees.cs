@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using App4.Models.Interfaces;
 using GalaSoft.MvvmLight;
 
 namespace App4.Models
@@ -15,7 +16,7 @@ namespace App4.Models
 		IEmployee CloneEmployee(IEmployee sourceEmployee);
 	}
 
-	public interface IEmployee
+	public interface IEmployee 
 	{
 		int Id { get; set; }
 		string Name { get; set; }
@@ -24,5 +25,6 @@ namespace App4.Models
 		string Surname { get; set; }
 		string Email { get; set; }
 
+		IAddress Address { get; set; }
 	}
 }

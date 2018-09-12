@@ -69,8 +69,38 @@
 				</StackPanel>
 			</validation:ControlWrapper>
 		</StackPanel>
-		
-		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="0"/>
+
+		<StackPanel Padding="20" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="300" DataContext="{Binding SelectedAddress}">
+
+			<validation:ControlWrapper PropertyName="Country">
+				<TextBox Width="260"
+				         Header="Country"
+				         Text="{Binding Country, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+				/>
+			</validation:ControlWrapper>
+
+			<validation:ControlWrapper PropertyName="City">
+				<TextBox Width="260"
+				         Header="City"
+				         Text="{Binding City, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+				/>
+			</validation:ControlWrapper>
+
+			<validation:ControlWrapper PropertyName="PostalCode">
+				<TextBox Width="260"
+				         Header="PostalCode"
+				         Text="{Binding PostalCode, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+				/>
+			</validation:ControlWrapper>
+
+			<validation:ControlWrapper PropertyName="Number">
+				<TextBox Width="260"
+				         Header="Number"
+				         Text="{Binding Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+				/>
+			</validation:ControlWrapper>
+
+		</StackPanel>
 
 		<Button Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" 
 		        Click="{x:Bind Vm.AddDataToDatabase2}" Content="Add person to database"/>

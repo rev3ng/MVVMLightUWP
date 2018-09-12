@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Views;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using App4.Models;
+using App4.Models.Interfaces;
 using App4.Services;
 using App4.Views;
 
@@ -52,6 +53,7 @@ namespace App4.ViewModels
 			//Register your services used here
 			SimpleIoc.Default.Register<INavigationService>(() => navig);
 			SimpleIoc.Default.Register<IEmployee, Employee>();
+			SimpleIoc.Default.Register<IAddress, Address>();
 			SimpleIoc.Default.Register<StartPageViewModel>();
 			SimpleIoc.Default.Register<AddPageViewModel>();
 			SimpleIoc.Default.Register<ViewPageViewModel>();

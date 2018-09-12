@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using App4.Models;
 using Template10.Validation;
 
-namespace App4.Services.UserService
+namespace App4.Services
 {
-	public static class Validator
+	public static class EmplyeeValidator
 	{
 		// this service is for validation logic
 
@@ -42,6 +42,11 @@ namespace App4.Services.UserService
 			else if (user.Salary < 0)
 				user.Properties[nameof(user.Salary)].Errors.Add("Salary cannot be less than 0.");
 
+			//validate Adress
+			if (user.Address == null)
+				user.Properties[nameof(user.Salary)].Errors.Add("Address field is required.");
+
 		}
 	}
+
 }

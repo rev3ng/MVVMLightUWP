@@ -1,4 +1,5 @@
 ﻿using System;
+using App4.Models.Interfaces;
 using GalaSoft.MvvmLight;
 using Template10.Validation;
 
@@ -6,53 +7,91 @@ namespace App4.Models
 {
 	public class Employee : ValidatableModelBase, IEmployee
 	{
+		private static int _id = 0;
+
+		public Employee()
+		{
+			
+			this.Id = _id;
+			_id++;
+		}
 
 		public int Id
 		{
-			get { return Read<int>(); }
-			set { Write(value); }
+			get => Read<int>();
+			set => Write(value);
 		}
 
 		public string Name
 		{
-			get { return Read<string>(); }
-			set { Write(value); }
+			get => Read<string>();
+			set => Write(value);
 		}
 
 		public string Surname
 		{
-			get { return Read<string>(); }
-			set { Write(value); }
+			get => Read<string>();
+			set => Write(value);
 		}
 
 		public decimal? Salary
 		{
-			get { return Read<decimal?>(); }
-			set { Write(value); }
+			get => Read<decimal?>();
+			set => Write(value);
 		}
 
 		public bool? IsHired
 		{
-			get { return Read<bool?>(); }
-			set { Write(value); }
+			get => Read<bool?>();
+			set => Write(value);
 		}
 
 		public string Email
 		{
-			get { return Read<string>(); }
-			set { Write(value); }
+			get => Read<string>();
+			set => Write(value);
 		}
 
-		public decimal SalaryConverter(string val)
+		public IAddress Address
 		{
-			decimal.TryParse(val, out decimal result);
-			return result;
+			get => Read<IAddress>();
+			set => Write(value);
 		}
 
-		public override string ToString()
+		public DateTime? CreationDateTime
 		{
-			return Name + " " + Salary.ToString();
+			get => Read<DateTime?>();
+			set => Write(value);
 		}
 
+	}
+
+	public class Address : ValidatableModelBase, IAddress
+	{
+		public string PostalCode
+		{
+			get => Read<string>();
+			set => Write(value);
+		}
+		public string Country
+		{
+			get => Read<string>();
+			set => Write(value);
+		}
+		public string City
+		{
+			get => Read<string>();
+			set => Write(value);
+		}
+		public string StreetAddress
+		{
+			get => Read<string>();
+			set => Write(value);
+		}
+		public string Number
+		{
+			get => Read<string>();
+			set => Write(value);
+		}
 	}
 }
